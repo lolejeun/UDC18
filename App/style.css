@@ -1,0 +1,91 @@
+h1
+{
+	color: black;
+	margin-left: 0px;
+	text-align: center;
+}
+.column
+{
+	float: left;
+}
+.left
+{
+	width: 60%;
+}
+.right
+{
+	width: 40%;
+}
+.row:after
+{
+	clear: both;
+	content: "";
+	display: table;
+}
+body
+{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 140%;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 20px;
+}
+.switch
+{
+	display: inline-block;
+	height: 34px;
+	position: relative;
+	width: 60px;
+}
+.switch input
+{
+	height: 0;
+	opacity: 0;
+	width: 0;
+}
+.slider
+{
+	background-color: #ccc;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: .4s;
+	webkit-transition: .4s;
+}
+.slider:before
+{
+	background-color: white;
+	bottom: 4px;
+	content: "";
+	height: 26px;
+	left: 4px;
+	position: absolute;
+	transition: .4s;
+	webkit-transition: .4s;
+	width: 26px;
+}
+input:checked + .slider
+{
+	background-color: darkorchid;
+}
+input:focus + .slider
+{
+	box-shadow: 0 0 1px darkorchid;
+}
+input:checked + .slider:before
+{
+	ms-transform: translateX(26px);
+	transform: translateX(26px);
+	webkit-transform: translateX(26px);
+}
+.slider.round
+{
+	border-radius: 34px;
+}
+.slider.round:before
+{
+	border-radius: 50%;
+}
