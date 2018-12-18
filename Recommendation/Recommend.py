@@ -3,10 +3,10 @@ import numpy as np
 import math
 from sklearn.linear_model import LinearRegression
 
-score_weight = 1
-price_weight = 1
-distance_weight = 1
-intercept = 0
+score_weight = 0.015
+price_weight = 0
+distance_weight = 0.121
+intercept = -0.581
 
 pickle_in = open('Recommend.pickle', 'rb')
 classifier = pickle.load(pickle_in)
@@ -20,13 +20,13 @@ for data in dataset:
 
 def recommend(user_location_x, user_location_y, user_money):
     input_data = [user_location_x, user_location_y, user_money]
-    destinations = classifier.kneighbors(np.array(input_data).reshape(1, -1), n_neighbors=5, return_distance=False)
+    destinations = classifier.kneighbors(np.array(input_data).reshape(1, -1), n_neighbors=10, return_distance=False)
 
     recommendation = {}
     for destination in destinations[0]:
         destination_x, destination_y = X[destination][:2]
         distance = math.sqrt(abs(user_location_x - float(destination_x))**2 + abs(user_location_y - float(destination_y))**2)
-        score_price_distance = y[destination][1] * score_weight + X[destination][2] * price_weight + distance * distance_weight + intercept + 10
+        score_price_distance = y[destination][1] * score_weight + X[destination][2] * price_weight + distance * distance_weight + intercept + 20
         recommendation[score_price_distance] = [y[destination][0], y[destination][1], destination_x, destination_y, X[destination][2], distance]
 
     sorted_recommendation = []
@@ -38,7 +38,7 @@ def recommend(user_location_x, user_location_y, user_money):
 def weights(choice, recommendations):
     global score_weight, price_weight, distance_weight, intercept
     X = []
-    y = [0, 0, 0, 0, 0]
+    y = [0] * len(recommendations)
 
     for data in recommendations:
         X.append([data[1][1], int(data[1][4]), round(data[1][5] * 10066.783078052693) / 100])
