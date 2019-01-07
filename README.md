@@ -2,6 +2,8 @@
 
 ### My Leisure Book 
 
+*For US01 evaluation, I was in charge of the data part. So I clean the data in order to have the csv in the Data folder. The Jupyter book for cleaning the data is in the Route folder (MyLeisureBook.ipynb). I also done the App part (very minimalist website and moke-up application) - Lola*
+
 **App**
 
 Website
@@ -24,11 +26,11 @@ Website
    
 **Recommendation**
 
-Machine learning algorithm
+Machine learning algorithm 
 
 **Route**
 
-Programm 
+Data traitment programm (MyLeisureBook.ipynb) and route choice (route.py)
 
 **Other**
 
